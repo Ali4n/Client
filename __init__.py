@@ -1,10 +1,10 @@
-__author__ = 'N3o'
+__author__ = 'Thomas BOTTON, IGOR ZECEVIC, Daoud MOUSTIR'
 
 from featuresClt.functions import *
 
 HOST = '127.0.0.1'
 PORT = 46000
-print ("test")
+
 import socket, sys, threading
 
 class ThreadReception(threading.Thread):
