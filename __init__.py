@@ -31,12 +31,10 @@ class ThreadEmission(threading.Thread):
         self.connexion = conn
 
     def run(self):
+        #demande du login puis du mdp
+        self.connexion.send(getLoginOrPassword(0).encode("Utf8"))
+        self.connexion.send(getLoginOrPassword(1).encode("Utf8"))
 
-
-        message_emis = getLoginOrPassword(0)
-        self.connexion.send(message_emis.encode("Utf8"))
-        message_emis = getLoginOrPassword(1)
-        self.connexion.send(message_emis.encode("Utf8"))
 # Programme principal - Etablissement de la connexion :
 connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
