@@ -4,7 +4,7 @@ from featuresClt.functions import *
 
 HOST = '127.0.0.1'
 PORT = 46000
-
+print ("test")
 import socket, sys, threading
 
 class ThreadReception(threading.Thread):
