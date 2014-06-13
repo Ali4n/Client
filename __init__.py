@@ -1,10 +1,9 @@
 __author__ = 'Thomas BOTTON, IGOR ZECEVIC, Daoud MOUSTIR'
 
-from featuresClt.functions import *
-
 HOST = '127.0.0.1'
 PORT = 46000
 
+from featuresClt.functions import *
 import socket, sys, threading
 
 class ThreadReception(threading.Thread):
@@ -32,10 +31,12 @@ class ThreadEmission(threading.Thread):
         self.connexion = conn
 
     def run(self):
-        while 1:
-            message_emis = input()
-            self.connexion.send(message_emis.encode("Utf8"))
 
+
+        message_emis = getLoginOrPassword(0)
+        self.connexion.send(message_emis.encode("Utf8"))
+        message_emis = getLoginOrPassword(1)
+        self.connexion.send(message_emis.encode("Utf8"))
 # Programme principal - Etablissement de la connexion :
 connexion = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
