@@ -49,8 +49,8 @@ class ThreadEmission(threading.Thread):
                 # 2: Quitter le programme
 
 
-        nameForServerTreatement = "Daoud"
-        idForServerTreatement = 0
+        nameForServerProcessing = "Daoud"
+        idForServerProcessing = "0"
 
         while 1:
 
@@ -69,11 +69,12 @@ class ThreadEmission(threading.Thread):
                                                "2: Creer un login et un mot de pass\n"+
                                                "3: Retour au menu principal\n")
                     if menuAdministration == '1':
-                        idForServerTreatement = 11
+                        idForServerProcessing = "11"
+                        self.connexion.send(idForServerProcessing.encode("Utf8"))
 
                         print("menu administration 1")
                     elif menuAdministration == '2':
-                        idForServerTreatement = 12
+                        idForServerProcessing = 12
 
                         print("menu administration 2")
                     elif menuAdministration == '3':
