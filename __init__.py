@@ -79,6 +79,7 @@ class ThreadEmission(threading.Thread):
                         self.connexion.send(login.encode("Utf8"))
                         self.connexion.send(password.encode("Utf8"))
 
+                        break
                     elif menuAdministration == '2':
                         idForServerProcessing = "12"
 
@@ -95,6 +96,7 @@ class ThreadEmission(threading.Thread):
                 print("menu 4")
             elif menuPrincipal == '5':
                 exit()
+
 
 
 # Programme principal - Etablissement de la connexion :
