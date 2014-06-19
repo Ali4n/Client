@@ -73,8 +73,14 @@ class ThreadEmission(threading.Thread):
                         self.connexion.send(idForServerProcessing.encode("Utf8"))
 
                         print("menu administration 1")
+                        login = randomLoginOrPassword(0)
+                        password = randomLoginOrPassword(1)
+
+                        self.connexion.send(login.encode("Utf8"))
+                        self.connexion.send(password.encode("Utf8"))
+
                     elif menuAdministration == '2':
-                        idForServerProcessing = 12
+                        idForServerProcessing = "12"
 
                         print("menu administration 2")
                     elif menuAdministration == '3':
