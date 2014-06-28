@@ -69,21 +69,31 @@ class ThreadEmission(threading.Thread):
                                                "2: Creer un login et un mot de pass\n"+
                                                "3: Retour au menu principal\n")
                     if menuAdministration == '1':
-                        idForServerProcessing = "11"
+                        idForServerProcessing = "WAu295kn"
                         self.connexion.send(idForServerProcessing.encode("Utf8"))
 
-                        print("menu administration 1")
-                        login = randomLoginOrPassword(0)
-                        password = randomLoginOrPassword(1)
+                        print("menu administration 1\n")
+                        loginRandom = randomLoginOrPassword(0)
+                        passwordRandom = randomLoginOrPassword(1)
+
+                        self.connexion.send(loginRandom.encode("Utf8"))
+                        self.connexion.send(passwordRandom.encode("Utf8"))
+
+                        break
+
+                    elif menuAdministration == '2':
+                        idForServerProcessing = "8fx24ANy"
+                        self.connexion.send(idForServerProcessing.encode("Utf8"))
+
+                        print("==== menu administration 2 ====\n")
+                        login = getLoginOrPassword(0)
+                        password = getLoginOrPassword(1)
 
                         self.connexion.send(login.encode("Utf8"))
                         self.connexion.send(password.encode("Utf8"))
 
                         break
-                    elif menuAdministration == '2':
-                        idForServerProcessing = "12"
 
-                        print("menu administration 2")
                     elif menuAdministration == '3':
                         print("Bonne journée, à bientôt")
                         break
