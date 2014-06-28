@@ -52,6 +52,7 @@ class ThreadEmission(threading.Thread):
         nameForServerProcessing = "Daoud"
         idForServerProcessing = "0"
 
+
         while 1:
 
             menuPrincipal = input("---- Saisir le numero du menu ----\n"+

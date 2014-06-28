@@ -10,6 +10,7 @@ def getLoginOrPassword(choice):
         return input("Saisir le mot de passe")
 
 
+
 def randomLoginOrPassword(choice):
 
     loginOrPassword = ""
