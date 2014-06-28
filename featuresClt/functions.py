@@ -14,12 +14,25 @@ def randomLoginOrPassword(choice):
 
     loginOrPassword = ""
     length = 0
-    #IL NE FAUT PAS OUBLIER D4AJOUTER LES SECURIT2 SUR LA TAILLE L4UTILISTATEUR NE PEUT ENTRER QUEUN ENTIER ...
+    check = 1
 
     if choice == 0:
-        length = int(input("Choisisez la taille de votre login: "))
+        while check == 1:
+            try:
+                length = int(input("Choisisez la taille de votre login: "))
+                break
+            except:
+                print("Entrer un nombre")
+                check == 1
+
     elif choice == 1:
-        length = int(input("Choisisez la taille de votre mot de passe: "))
+        while check == 1:
+            try:
+                length = int(input("Choisisez la taille de votre login: "))
+                break
+            except:
+                print("Entrer un nombre")
+                check == 1
 
     while length > 0:
         loginOrPassword += random.choice('AZERTYUIOPQSDFGHJKLMWXCVBNazertyuiopqsdfghjklmwxcvbn123456789&é^$ù*,;:!?./§/*-+')
