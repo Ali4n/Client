@@ -3,6 +3,7 @@ __author__ = 'Thomas BOTTON, IGOR ZECEVIC, Daoud MOUSTIR'
 import random
 import hashlib
 
+
 def getLoginOrPassword(choice):
     if choice == 0:
         return input("Saisir le login")
