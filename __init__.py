@@ -95,12 +95,35 @@ class ThreadEmission(threading.Thread):
 
                         break
 
+
                     elif menuAdministration == '3':
                         print("Bonne journée, à bientôt")
                         break
 
             elif menuPrincipal == '2':
-                print("menu 2")
+                while 1:
+                    menuAuthentification = input("#####################  MENU 2: Authentification  #####################\n"+
+                                               "----- Saisir le numero du menu -----\n"+
+                                               "1: Connexion a votre compte\n"+
+                                               "2: Retour au menu principal\n")
+
+                    if menuAuthentification == '1':
+                        idForServerProcessing = "Sa8w94Tb"
+                        self.connexion.send(idForServerProcessing.encode("Utf8"))
+
+                        loginAuth = getLoginOrPassword(0)
+                        passwordAuth = getLoginOrPassword(1)
+
+                        self.connexion.send(loginAuth.encode("Utf8"))
+                        self.connexion.send(passwordAuth.encode("Utf8"))
+
+                        break
+
+
+                    elif menuAuthentification == '2':
+                        print("Bonne journée, à bientôt")
+                        break
+
             elif menuPrincipal == '3':
                 print("menu 3")
             elif menuPrincipal == '4':

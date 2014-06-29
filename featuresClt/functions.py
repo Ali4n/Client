@@ -6,9 +6,9 @@ import hashlib
 
 def getLoginOrPassword(choice):
     if choice == 0:
-        return input("Saisir le login")
+        return input("Saisir votre login")
     elif choice == 1:
-        return input("Saisir le mot de passe")
+        return input("Saisir votre mot de passe")
 
 
 def randomLoginOrPassword(choice):
