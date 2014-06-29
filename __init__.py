@@ -56,7 +56,7 @@ class ThreadEmission(threading.Thread):
 
             menuPrincipal = input("---- Saisir le numero du menu ----\n"+
                                   "1: Administration login & mdp\n"+
-                                  "2: Verifier l'utilisateur est bien dans le fichier de hash\n"+
+                                  "2: Authentification\n"+
                                   "3: Brute force du programme de login & mot de passe\n"+
                                   "4: Administration HIDS\n"+
                                   "5: Quitter le programme\n")
@@ -78,6 +78,7 @@ class ThreadEmission(threading.Thread):
 
                         self.connexion.send(loginRandom.encode("Utf8"))
                         self.connexion.send(passwordRandom.encode("Utf8"))
+
 
                         break
 
