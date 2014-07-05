@@ -56,10 +56,8 @@ class ThreadEmission(threading.Thread):
 
             menuPrincipal = input("---- Saisir le numero du menu ----\n"+
                                   "1: Administration login & mdp\n"+
-                                  "2: Authentification\n"+
-                                  "3: Brute force du programme de login & mot de passe\n"+
-                                  "4: Administration HIDS\n"+
-                                  "5: Quitter le programme\n")
+                                  "2: Connexion a votre espace de stockage\n"+
+                                  "3: Quitter le programme\n")
 
             if menuPrincipal == '1':
 
@@ -127,8 +125,8 @@ class ThreadEmission(threading.Thread):
                         idForServerProcessing = "Sa8w94Tb"
                         self.connexion.send(idForServerProcessing.encode("Utf8"))
 
-                        loginAuth = getLoginOrPassword(0)
-                        passwordAuth = getLoginOrPassword(1)
+                        loginAuth = loginOrPassword(0)
+                        passwordAuth = loginOrPassword(1)
 
                         self.connexion.send(loginAuth.encode("Utf8"))
                         self.connexion.send(passwordAuth.encode("Utf8"))
@@ -141,10 +139,6 @@ class ThreadEmission(threading.Thread):
                         break
 
             elif menuPrincipal == '3':
-                print("menu 3")
-            elif menuPrincipal == '4':
-                print("menu 4")
-            elif menuPrincipal == '5':
                 exit()
 
 

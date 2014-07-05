@@ -22,7 +22,17 @@ def getLoginOrPassword(choice):
             controlLenght = len(password)
             if controlLenght < 6:
                 print("Notre politique de mot de passe vous impose d'avoir un mot de passe plus grand que 6 caracteres")
+            else:
+                break
         return password
+
+
+def loginOrPassword(choice):
+    if choice == 0:
+        return input("Saisir votre login")
+    elif choice == 1:
+        return input("Saisir votre mot de passe")
+
 
 def randomLoginOrPassword(choice):
 
