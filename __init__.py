@@ -4,7 +4,10 @@ HOST = '127.0.0.1'
 PORT = 46000
 
 from featuresClt.functions import *
-import socket, sys, threading
+import socket
+import sys
+import threading
+
 
 class ThreadReception(threading.Thread):
     # objet thread gérant la reception des messages
@@ -16,13 +19,14 @@ class ThreadReception(threading.Thread):
         while 1:
             message_recu = self.connexion.recv(1024).decode("Utf8")
             print("*" + message_recu + "*")
-            if not message_recu or message_recu.upper() =="FIN":
+            if not message_recu or message_recu.upper() == "FIN":
                 break
         #Le thread <réception> se termine ici.
         #On force la fermeture du thread <émission> :
         th_E._stop()
         print("Client arrêté. Connexion interrompue.")
         self.connexion.close()
+
 
 class ThreadEmission(threading.Thread):
     # objet thread gérant l'émission des messages
@@ -41,22 +45,20 @@ class ThreadEmission(threading.Thread):
         # 4: Administration HIDS
         # 5: Quitter le programme
             # MENU 1: administration login & mdp
-                # 1: Creer un login et un mdp random    (idForServerTreatement = 11) tretement in srv => she use bdd to log & mdp
-                # 2: Creer un login et un mdp   (idForServerTreatement = 12)    tretement in srv => she use bdd to log & mdp
+                # 1: Creer un login et un mdp random
+                # 2: Creer un login et un mdp
                 # 3: Quitter le programme
             # MENU 2: Verifier l'utilisateur est bien dans le fichier ou bdd de hash
                 # 1: Verification de l'utilisateur et du mot de passe   (idForServerTreatement = 21)
                 # 2: Quitter le programme
 
-
-        nameForServerProcessing = "Daoud"
         idForServerProcessing = "0"
 
         while 1:
 
-            menuPrincipal = input("---- Saisir le numero du menu ----\n"+
-                                  "1: Administration login & mdp\n"+
-                                  "2: Connexion a votre espace de stockage\n"+
+            menuPrincipal = input("---- Saisir le numero du menu ----\n" +
+                                  "1: Administration login & mdp\n" +
+                                  "2: Connexion a votre espace de stockage\n" +
                                   "3: Quitter le programme\n")
 
             if menuPrincipal == '1':
@@ -69,10 +71,10 @@ class ThreadEmission(threading.Thread):
                         if loginRoot == "mynameisroot" and passwordRoot == "7Wrf9y7L":
                             print("Bienvenu sur votre espace de gestion administrateur")
 
-                            menuAdministration = input("#####################  MENU 1: administration login & mdp  #####################\n"+
-                                                           "----- Saisir le numero du menu -----\n"+
-                                                           "1: Creer un login et un mot de pass random\n"+
-                                                           "2: Creer un login et un mot de pass\n"+
+                            menuAdministration = input("#####################  MENU 1: administration login & mdp  #####################\n" +
+                                                           "----- Saisir le numero du menu -----\n" +
+                                                           "1: Creer un login et un mot de pass random\n" +
+                                                           "2: Creer un login et un mot de pass\n" +
                                                            "3: Retour au menu principal\n")
 
                             if menuAdministration == '1':
@@ -89,7 +91,6 @@ class ThreadEmission(threading.Thread):
 
                                 break
 
-
                             elif menuAdministration == '2':
                                 idForServerProcessing = "8fx24ANy"
                                 self.connexion.send(idForServerProcessing.encode("Utf8"))
@@ -103,7 +104,6 @@ class ThreadEmission(threading.Thread):
 
                                 break
 
-
                             elif menuAdministration == '3':
                                 print("Bonne journée, à bientôt")
                                 break
@@ -112,13 +112,11 @@ class ThreadEmission(threading.Thread):
                             print("Mauvais Login & Mot de passe Administrateur")
                             break
 
-
-
             elif menuPrincipal == '2':
                 while 1:
                     menuAuthentification = input("#####################  MENU 2: Authentification  #####################\n"+
-                                               "----- Saisir le numero du menu -----\n"+
-                                               "1: Connexion a votre compte\n"+
+                                               "----- Saisir le numero du menu -----\n" +
+                                               "1: Connexion a votre compte\n" +
                                                "2: Retour au menu principal\n")
 
                     if menuAuthentification == '1':
@@ -133,14 +131,12 @@ class ThreadEmission(threading.Thread):
 
                         break
 
-
                     elif menuAuthentification == '2':
                         print("Bonne journée, à bientôt")
                         break
 
             elif menuPrincipal == '3':
                 exit()
-
 
 
 # Programme principal - Etablissement de la connexion :
