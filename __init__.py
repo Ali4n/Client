@@ -54,6 +54,7 @@ class ThreadEmission(threading.Thread):
                 # 2: Quitter le programme
 
         idForServerProcessing = "0"
+        cptbruteforce = 1
 
         while 1:
 
@@ -119,13 +120,17 @@ class ThreadEmission(threading.Thread):
                                                "----- Saisir le numero du menu -----\n" +
                                                "1: Connexion a votre compte\n" +
                                                "2: Retour au menu principal\n")
+                    if cptbruteforce > 4:
+                        print("vous avez essayé trop de codes. veuillez réessayer plus tard")
+                        break
 
-                    if menuAuthentification == '1':
+                    elif menuAuthentification == '1':
                         idForServerProcessing = "Sa8w94Tb"
                         self.connexion.send(idForServerProcessing.encode("Utf8"))
 
                         loginAuth = loginOrPassword(0)
                         passwordAuth = loginOrPassword(1)
+                        cptbruteforce += 1
 
                         self.connexion.send(loginAuth.encode("Utf8"))
                         self.connexion.send(passwordAuth.encode("Utf8"))

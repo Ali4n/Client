@@ -85,3 +85,4 @@ def randomLoginOrPassword(choice):
         print(message)
 
     return loginOrPassword
+
