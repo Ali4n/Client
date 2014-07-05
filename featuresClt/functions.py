@@ -1,8 +1,10 @@
+from getpass import fallback_getpass
+
 __author__ = 'Thomas BOTTON, IGOR ZECEVIC, Daoud MOUSTIR'
 
 import random
 import hashlib
-
+import sys
 
 def getLoginOrPassword(choice):
     if choice == 0:
