@@ -36,22 +36,6 @@ class ThreadEmission(threading.Thread):
         self.connexion = conn
 
     def run(self):
-        #test :     self.connexion.send(getLoginOrPassword(0).encode("Utf8"))
-        #test :     self.connexion.send(getLoginOrPassword(1).encode("Utf8"))
-
-        #definition du MENU PRINCIPALE
-        # 1: Administration login & mdp FAIT
-        # 2: Verifier l'utilisateur est bien dans le fichier de hash
-        # 3: Brute force du programme de login & mot de passe
-        # 4: Administration HIDS
-        # 5: Quitter le programme
-            # MENU 1: administration login & mdp
-                # 1: Creer un login et un mdp random
-                # 2: Creer un login et un mdp
-                # 3: Quitter le programme
-            # MENU 2: Verifier l'utilisateur est bien dans le fichier ou bdd de hash
-                # 1: Verification de l'utilisateur et du mot de passe   (idForServerTreatement = 21)
-                # 2: Quitter le programme
 
         idForServerProcessing = "0"
         cptbruteforce = 1
