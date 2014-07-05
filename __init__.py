@@ -62,43 +62,59 @@ class ThreadEmission(threading.Thread):
                                   "5: Quitter le programme\n")
 
             if menuPrincipal == '1':
+
                 while 1:
-                    menuAdministration = input("#####################  MENU 1: administration login & mdp  #####################\n"+
-                                               "----- Saisir le numero du menu -----\n"+
-                                               "1: Creer un login et un mot de pass random\n"+
-                                               "2: Creer un login et un mot de pass\n"+
-                                               "3: Retour au menu principal\n")
-                    if menuAdministration == '1':
-                        idForServerProcessing = "WAu295kn"
-                        self.connexion.send(idForServerProcessing.encode("Utf8"))
 
-                        print("menu administration 1\n")
-                        loginRandom = randomLoginOrPassword(0)
-                        passwordRandom = randomLoginOrPassword(1)
+                        loginRoot = input("Entrer votre login administrateur")
+                        passwordRoot = input("Entrer votre mot de passe administrateur")
 
-                        self.connexion.send(loginRandom.encode("Utf8"))
-                        self.connexion.send(passwordRandom.encode("Utf8"))
+                        if loginRoot == "mynameisroot" and passwordRoot == "7Wrf9y7L":
+                            print("Bienvenu sur votre espace de gestion administrateur")
 
+                            menuAdministration = input("#####################  MENU 1: administration login & mdp  #####################\n"+
+                                                           "----- Saisir le numero du menu -----\n"+
+                                                           "1: Creer un login et un mot de pass random\n"+
+                                                           "2: Creer un login et un mot de pass\n"+
+                                                           "3: Retour au menu principal\n")
 
-                        break
+                            if menuAdministration == '1':
 
-                    elif menuAdministration == '2':
-                        idForServerProcessing = "8fx24ANy"
-                        self.connexion.send(idForServerProcessing.encode("Utf8"))
+                                idForServerProcessing = "WAu295kn"
+                                self.connexion.send(idForServerProcessing.encode("Utf8"))
 
-                        print("==== menu administration 2 ====\n")
-                        login = getLoginOrPassword(0)
-                        password = getLoginOrPassword(1)
+                                print("menu administration 1\n")
+                                loginRandom = randomLoginOrPassword(0)
+                                passwordRandom = randomLoginOrPassword(1)
 
-                        self.connexion.send(login.encode("Utf8"))
-                        self.connexion.send(password.encode("Utf8"))
+                                self.connexion.send(loginRandom.encode("Utf8"))
+                                self.connexion.send(passwordRandom.encode("Utf8"))
 
-                        break
+                                break
 
 
-                    elif menuAdministration == '3':
-                        print("Bonne journée, à bientôt")
-                        break
+                            elif menuAdministration == '2':
+                                idForServerProcessing = "8fx24ANy"
+                                self.connexion.send(idForServerProcessing.encode("Utf8"))
+
+                                print("==== menu administration 2 ====\n")
+                                login = getLoginOrPassword(0)
+                                password = getLoginOrPassword(1)
+
+                                self.connexion.send(login.encode("Utf8"))
+                                self.connexion.send(password.encode("Utf8"))
+
+                                break
+
+
+                            elif menuAdministration == '3':
+                                print("Bonne journée, à bientôt")
+                                break
+
+                        else:
+                            print("Mauvais Login & Mot de passe Administrateur")
+                            break
+
+
 
             elif menuPrincipal == '2':
                 while 1:
