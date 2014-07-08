@@ -4,10 +4,13 @@ HOST = '127.0.0.1'
 PORT = 46000
 
 from featuresClt.functions import *
+from ftplib import FTP
 
 import socket
 import sys
 import threading
+
+
 
 
 class ThreadReception(threading.Thread):
@@ -17,14 +20,52 @@ class ThreadReception(threading.Thread):
         self.connexion = conn
 
     def run(self):
+
+        global syncinput
+
         while 1:
+
             message_recu = self.connexion.recv(1024).decode("Utf8")
             print("*" + message_recu + "*")
-            if not message_recu or message_recu.upper() == "FIN":
-                break
+            #if not message_recu or message_recu.upper() == "FIN":
+
+            syncinput = False
+
+            if message_recu == "Bienvenu sur votre espace de stockage":
+
+
+                ftp_host = '127.0.0.1'
+                ftp_login = 'anonymous'
+                ftp_password = 'Ls4z7B9t'
+
+                ftp = FTP(ftp_host, ftp_login, ftp_password)
+                print("#####  Listes de vos fichiers :  #####")
+                ftp.dir()
+
+                print("!!!! Transferer votre fichier qui est contenu dans votre dossier client FilesClients, pour le => a FilesServers: !!!!")
+                varDir = "FilesClients\\"
+
+
+                flush_input()
+                varfichier = input("Entrer le nom du fichier à envoyer :\r")
+
+                try:
+                    file=open(varDir + varfichier, 'rb')
+                    ftp.storbinary("STOR "+ varfichier +"", file)
+                    file.close()
+                except:
+                    print("Le fichier n'existe pas")
+
+                print("#####  Listes de vos nouveaux fichiers :  #####")
+                ftp.dir()
+
+                syncinput = True
+
+
+
         #Le thread <réception> se termine ici.
         #On force la fermeture du thread <émission> :
-        th_E._stop()
+        #th_E._stop()
         print("Client arrêté. Connexion interrompue.")
         self.connexion.close()
 
@@ -39,13 +80,16 @@ class ThreadEmission(threading.Thread):
 
         idForServerProcessing = "0"
         cptbruteforce = 1
+        global syncinput
 
+        syncinput = True
         while 1:
 
-            menuPrincipal = input("---- Saisir le numero du menu ----\n" +
-                                  "1: Administration login & mdp\n" +
-                                  "2: Connexion a votre espace de stockage\n" +
-                                  "3: Quitter le programme\n")
+            if syncinput:
+                menuPrincipal = input("---- Saisir le numero du menu ----\n" +
+                                      "1: Administration login & mdp\n" +
+                                      "2: Connexion a votre espace de stockage\n" +
+                                      "3: Quitter le programme\n")
 
             if menuPrincipal == '1':
 
@@ -55,6 +99,7 @@ class ThreadEmission(threading.Thread):
                         passwordRoot = input("Entrer votre mot de passe administrateur")
 
                         if loginRoot == "mynameisroot" and passwordRoot == "7Wrf9y7L":
+                            syncinput = True
                             print("Bienvenu sur votre espace de gestion administrateur")
 
                             menuAdministration = input("#####################  MENU 1: administration login & mdp  #####################\n" +
@@ -92,6 +137,7 @@ class ThreadEmission(threading.Thread):
 
                             elif menuAdministration == '3':
                                 print("Bonne journée, à bientôt")
+
                                 break
 
                         else:
@@ -100,6 +146,7 @@ class ThreadEmission(threading.Thread):
 
             elif menuPrincipal == '2':
                 while 1:
+                    syncinput = True
                     menuAuthentification = input("#####################  MENU 2: Authentification  #####################\n"+
                                                "----- Saisir le numero du menu -----\n" +
                                                "1: Connexion a votre compte\n" +
@@ -123,6 +170,7 @@ class ThreadEmission(threading.Thread):
 
                     elif menuAuthentification == '2':
                         print("Bonne journée, à bientôt")
+
                         break
 
             elif menuPrincipal == '3':
