@@ -44,10 +44,14 @@ class ThreadReception(threading.Thread):
 
                 print("!!!! Transferer votre fichier qui est contenu dans votre dossier client FilesClients, pour le => a FilesServers: !!!!")
                 varDir = "FilesClients\\"
-
+                varDirSrv = "FilesServers\\"
 
                 flush_input()
                 varfichier = input("Entrer le nom du fichier à envoyer :\r")
+
+                E1 = file_hash(varDir + varfichier)
+                print("MINI HIDS : E1 = %s" % E1)
+
 
                 try:
                     file=open(varDir + varfichier, 'rb')
@@ -55,6 +59,20 @@ class ThreadReception(threading.Thread):
                     file.close()
                 except:
                     print("Le fichier n'existe pas")
+
+                idForServerProcessing = "4g8wZaD2"
+
+                self.connexion.send(idForServerProcessing.encode("Utf8"))
+                file = varDirSrv + varfichier
+                self.connexion.send(file.encode("Utf8"))
+
+                E2 = self.connexion.recv(1024).decode("Utf8")
+                print("MINI HIDS : E2 = %s"% E2)
+
+                if E1 == E2:
+                    print("MINI HIDS : Votre fichier n'a pas subi de modification")
+                else:
+                    print("MINI HIDS : E1 != de E2 ... il y a eu alteration du fichier")
 
                 print("#####  Listes de vos nouveaux fichiers :  #####")
                 ftp.dir()
@@ -86,7 +104,12 @@ class ThreadEmission(threading.Thread):
         while 1:
 
             if syncinput:
-                menuPrincipal = input("---- Saisir le numero du menu ----\n" +
+                menuPrincipal = input(
+                                      "   _   _   _   _   _    _      _   _   _   _   _   _   _   _   _       \n" +
+                                      "  / \ / \ / \ / \ / \  / \    / \ / \ / \ / \ / \ / \ / \ / \ / \      \n" +
+                                      " ( S | 0 | S | M | 3 )( D |  | P | R | 0 | G | R | A | M | M | 3 |     \n" +
+                                      "  \_/ \_/ \_/ \_/ \_/  \_/    \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/ \_/      \n\n" +
+                                      "---- Saisir le numero du menu ----\n" +
                                       "1: Administration login & mdp\n" +
                                       "2: Connexion a votre espace de stockage\n" +
                                       "3: Quitter le programme\n")
